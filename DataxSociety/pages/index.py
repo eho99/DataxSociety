@@ -1,18 +1,17 @@
-"""The home page of the app."""
+import reflex as rx 
 
-from DataxSociety import styles
-from DataxSociety.templates import template
-
-import reflex as rx
-
-
-@template(route="/", title="Home", image="/github.svg")
 def index() -> rx.Component:
-    """The home page.
+    """Render the index page.
 
     Returns:
-        The UI for the home page.
+        A reflex component.
     """
-    with open("README.md", encoding="utf-8") as readme:
-        content = readme.read()
-    return rx.markdown(content, component_map=styles.markdown_style)
+    return rx.fragment(
+        rx.color_mode_button(rx.color_mode_icon(), float="right"),
+        rx.vstack(
+            rx.heading("Welcome to my homepage!", font_size="2em"),
+            rx.link("Protected Page", href="/protected"),
+            spacing="1.5em",
+            padding_top="10%",
+        ),
+    )

@@ -1,3 +1,3 @@
-from .dashboard import dashboard
+from .registration_page import registration_page
 from .index import index
-from .settings import settings
+from .login_page import login_page
