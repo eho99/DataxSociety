@@ -37,14 +37,27 @@ class VariableLayerFeedForwardNN(nn.Module):
         x = self.output_layer(x)
         return x
 
-def TrainVariableFeedForwardNN(input_size: int, output_size: int, 
-                               hidden_sizes: List[int], activations: List[str], 
-                               loss_function: str, lr: float, num_epochs: int, 
+def TrainVariableFeedForwardNN(input_size: int, output_size: int,
+                               hidden_sizes: List[int], activations: List[str],
+                               loss_function: str, lr: float, num_epochs: int,
                                all_inputs: List[List[float]], all_outputs: List[List[float]]):
     
+    assert len(all_inputs) == len(all_outputs)
 
     all_inputs = torch.tensor(all_inputs)
     all_outputs = torch.tensor(all_outputs)
 
+    if all_outputs.dim() == 1:
+        all_outputs.view(-1, 1)   
+    
     assert all_outputs.shape[1] == output_size
     assert all_inputs.shape[1] == input_size
+
+    for i in range(num_epochs):
+        for j in range(all_inputs.shape[0]):
+            input = all_inputs[j]
+            output = all_outputs[j]
+
+            
+
+
