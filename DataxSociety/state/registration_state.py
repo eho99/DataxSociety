@@ -33,7 +33,7 @@ class RegistrationState(State):
                 yield rx.set_focus("username")
                 return
             existing_user = session.exec(
-                User.select.where(User.username == username)
+                session.query(User).where(User.username == username) # Need to query by the session, structure like sqlite
             ).one_or_none()
             if existing_user:
                 self.error_message = (

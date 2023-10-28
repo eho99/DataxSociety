@@ -25,12 +25,16 @@ class LoginState(State):
         password = form_data["password"]
         with rx.session() as session:
             user = session.exec(
-                User.select.where(User.username == username)
+                session.query(User).where(User.username == username) # Need to query by the session, structure like sqlite
             ).one_or_none()
+            user = user[0]
         if user and not user.enabled:
             self.error_message = "This account is disabled."
             return rx.set_value("password", "")
-        if user is None or not user.verify(password):
+        if password is None:
+            self.error_message = "Please enter a password."
+            return rx.set_value("password", "")
+        if user is None or password is None or not user.verify(password):
             self.error_message = "There was a problem logging in, please try again."
             return rx.set_value("password", "")
         if (
