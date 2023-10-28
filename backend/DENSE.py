@@ -1,9 +1,13 @@
 import torch
 import torch.nn as nn
+import torch.optim as optim
+from sklearn.model_selection import train_test_split
 from typing import List
 
+# ASSUME FOR A CLASSICATION PROBLEM 
+
 class VariableLayerFeedForwardNN(nn.Module):
-    def __init__(self, input_size: int, output_size: int, hidden_sizes: List[int], activations: List[str]):
+    def __init__(self, input_size: int, output_size: int, hidden_sizes: List[int], activations: List[str], possible_labels: List[str]):
         assert len(hidden_sizes) == len(activations)
 
         super(VariableLayerFeedForwardNN, self).__init__()
@@ -26,6 +30,8 @@ class VariableLayerFeedForwardNN(nn.Module):
                 self.activations.append(nn.Tanh())
             else:
                 raise ValueError("Unsupported activation function in list!")
+            
+        self.possible_labels = possible_labels
 
     def forward(self, x):
         x = torch.tensor(x, dtype=torch.float32)
@@ -37,26 +43,56 @@ class VariableLayerFeedForwardNN(nn.Module):
         x = self.output_layer(x)
         return x
 
-    def train(input_size: int, output_size: int,
-                hidden_sizes: List[int], activations: List[str],
-                loss_function: str, lr: float, num_epochs: int,
-                all_inputs: List[List[float]], all_outputs: List[List[float]]):
+    def _train(self, loss_function: str, lr: float, num_epochs: int, 
+              train_inputs: List[List[float]], train_outputs: List[List[float]]):
+        # uses Adam optimizer
+        assert len(train_inputs) == len(train_outputs)
+
+        train_inputs = torch.tensor(train_inputs, dtype=torch.float32)
+        train_outputs = torch.tensor(train_outputs, dtype=torch.float32)
+
+        if train_outputs.dim() == 1:
+            train_outputs = train_outputs.view(-1, 1)
+
+        # Find the loss function based on the input string
+        if loss_function == "L1Loss":
+            criterion = nn.L1Loss()
+        elif loss_function == "MSELoss":
+            criterion = nn.MSELoss()
+        elif loss_function == "NLLLoss":
+            criterion = nn.NLLLoss()
+        elif loss_function == "CrossEntropyLoss":
+            criterion = nn.CrossEntropyLoss()
+        else:
+            raise ValueError("Unsupported loss function!")
         
-        assert len(all_inputs) == len(all_outputs)
+        optimizer = optim.Adam(self.parameters(), lr=lr)
 
-        all_inputs = torch.tensor(all_inputs)
-        all_outputs = torch.tensor(all_outputs)
+        epoch_status = []
 
-        if all_outputs.dim() == 1:
-            all_outputs.view(-1, 1)   
+        for epoch in range(num_epochs):
+            optimizer.zero_grad()
+
+            outputs = self(train_inputs)
+            loss = criterion(outputs, train_outputs)
+
+            loss.backward()
+            optimizer.step()
+
+            running_loss = loss.item()
+            epoch_status.append(f'Epoch {epoch + 1}, Loss: {running_loss}')
+        return epoch_status 
         
-        assert all_outputs.shape[1] == output_size
-        assert all_inputs.shape[1] == input_size
+    def eval(self, test_inputs, test_outputs):
+        outputs = self(test_inputs)
+        best_indices = torch.argmax(outputs)
 
-        for i in range(num_epochs):
-            for j in range(all_inputs.shape[0]):
-                input = all_inputs[j]
-                output = all_outputs[j]
+
+
+
+
+
+
 
             
 
