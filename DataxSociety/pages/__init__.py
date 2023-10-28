@@ -1,3 +1,3 @@
-from .login import login
-from .signup import signup
+from .registration_page import registration_page
 from .index import index
+from .login_page import login_page

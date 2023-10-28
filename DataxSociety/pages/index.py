@@ -1,7 +1,17 @@
-"""Index Page: Serves as the landing page/initial page for users who are not signed up."""
+import reflex as rx 
 
-import reflex as rx
-from ..components.header import header
+def index() -> rx.Component:
+    """Render the index page.
 
-def index():
-    return header()
+    Returns:
+        A reflex component.
+    """
+    return rx.fragment(
+        rx.color_mode_button(rx.color_mode_icon(), float="right"),
+        rx.vstack(
+            rx.heading("Welcome to my homepage!", font_size="2em"),
+            rx.link("Protected Page", href="/protected"),
+            spacing="1.5em",
+            padding_top="10%",
+        ),
+    )
