@@ -1,18 +1,7 @@
-"""The home page of the app."""
-
-from DataxSociety import styles
-from DataxSociety.templates import template
+"""Index Page: Serves as the landing page/initial page for users who are not signed up."""
 
 import reflex as rx
+from ..components.header import header
 
-
-@template(route="/", title="Home", image="/github.svg")
-def index() -> rx.Component:
-    """The home page.
-
-    Returns:
-        The UI for the home page.
-    """
-    with open("README.md", encoding="utf-8") as readme:
-        content = readme.read()
-    return rx.markdown(content, component_map=styles.markdown_style)
+def index():
+    return header()
