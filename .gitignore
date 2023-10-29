@@ -6,4 +6,5 @@ alembic.ini
 alembic/
 venv
 .web
-*/DataxSociety/__pycache__/
+DataxSociety/__pycache__/
+DataxSociety/*/__pycache__/
