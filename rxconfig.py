@@ -9,6 +9,11 @@ config = AppConfig(
     env=rx.Env.DEV,
     tailwind={
         "theme": {
+            "extend": {
+                "backgroundImage": {
+                    'image': "url('/bgGif.gif')"
+                },
+            },
         },
         "plugins": ["@tailwindcss/forms", "@tailwindcss/typography"]
     }
