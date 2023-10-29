@@ -51,7 +51,7 @@ class Eval_State(State):
             loss = proj_model.loss_func
             dropout = proj_model.dropout
 
-            # I expect this to be LSTM or DENSE
+            # I expect this t so be LSTM or DENSE
             if proj_model.network_type == "DENSE":
                 network = DENSE(input_nodes, output_nodes, layer_nodes, layer_activations, [i for i in range(output_nodes)])
                 test_loss, epoch_status, test_acuracy = network.train(loss, learning_rate, num_epochs, test_ratio, data_set, label_set)
