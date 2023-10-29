@@ -16,12 +16,6 @@ def get_projects():
         ).all()
     return projects
 
-proj_list = get_projects()
-if not proj_list:
-    proj_list = []
-else:
-    proj_list = [proj[0] for proj in proj_list]
-
 # Gets a list of Users
 def get_users():
     with rx.session() as session:
@@ -30,13 +24,23 @@ def get_users():
         ).one_or_none()
     return users
 
+
 users = get_users()
 if not users:
     users = []
 else:
     users = list(users)
 
+proj_list = get_projects()
+if not proj_list:
+    proj_list = []
+else:
+    proj_list = [proj[0] for proj in proj_list]
+
 def add_data_page() -> rx.Component:
+
+    
+
     form = rx.form(
         rx.form_control(
             rx.form_label("Project Name", html_for="project_name", class_name="block text-sm font-medium leading-6 text-gray-900"),
