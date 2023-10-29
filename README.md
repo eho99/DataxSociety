@@ -1,73 +1,33 @@
-# Welcome to Reflex!
+# CrowdControlled: Democratizing Data and Machine Learning
 
-This is the base Reflex template - installed when you run `reflex init`.
+## Table of Contents
+- [Introduction](#introduction)
+- [Inspiration](#inspiration)
+- [Key Features](#key-features)
+- [Acknowledgements](#acknowledgements)
 
-If you want to use a different template, pass the `--template` flag to `reflex init`.
-For example, if you want a more basic starting point, you can run:
+## <a name="introduction"></a>Introduction
 
-```bash
-reflex init --template blank
-```
+**Crowd Controlled** is a web application that empowers users to collaboratively share data and machine learning models. With a user-friendly platform, it facilitates open collaboration between data seekers and data providers, making it a valuable resource for businesses, researchers, and data enthusiasts.
 
-## About this Template
+- Democratize access to data and machine learning models.
+- Accelerate innovation and knowledge sharing.
+- Create a global community of data contributors and machine learning practitioners.
 
-This template has the following directory structure:
+## <a name="inspiration"></a>Inspiration
+This probject was born out of an interest in the social dynamics of Internet phenomenon like r/place. Events like this have the capacity to speak to the power of collaboration and the goodwill of individuals who may have never met and may never meet again, but work to create and share across the Internet. We have a dream of seeing problem solvers and interested, good-willed individuals contributing to CrowdControlled to push data collection, machine learning education, and problem solving to the next level by creating projects and running experiments. 
 
-```bash
-├── README.md
-├── assets
-├── rxconfig.py
-└── {your_app}
-    ├── __init__.py
-    ├── components
-    │   ├── __init__.py
-    │   └── sidebar.py
-    ├── pages
-    │   ├── __init__.py
-    │   ├── dashboard.py
-    │   ├── index.py
-    │   └── settings.py
-    ├── state.py
-    ├── styles.py
-    ├── templates
-    │   ├── __init__.py
-    │   └── template.py
-    └── {your_app}.py
-```
+## <a name="key-features"></a>Key Features
 
-See the [Project Structure docs](https://reflex.dev/docs/getting-started/project-structure/) for more information on general Reflex project structure.
+- **Data Sharing:** Users can initiate projects requiring specific types of data and freely share datasets, creating a rich repository of information.
 
-### Adding Pages
+- **Machine Learning Models:** Collaboratively develop and share machine learning models, fostering innovation and knowledge sharing.
 
-In this template, the pages in your app are defined in `{your_app}/pages/`.
-Each page is a function that returns a Reflex component.
-For example, to edit this page you can modify `{your_app}/pages/index.py`.
-See the [pages docs](https://reflex.dev/docs/components/pages/) for more information on pages.
+- **Project Management:** Easily create, manage, and monitor data-driven projects. Set goals, define data requirements, and track contributions in real-time.
 
-In this template, instead of using `rx.add_page` or the `@rx.page` decorator,
-we use the `@template` decorator from `{your_app}/templates/template.py`.
+- **Community Engagement:** Foster user interaction through discussion forums, Q&A sections, and collaboration tools. Share feedback, seek guidance, and learn from others.
 
-To add a new page:
+- **Privacy and Security:** Robust privacy controls and security measures protect sensitive data and prevent misuse.
 
-1. Add a new file in `{your_app}/pages/`. We recommend using one file per page, but you can also group pages in a single file.
-2. Add a new function with the `@template` decorator, which takes the same arguments as `@rx.page`.
-3. Import the page in your `{your_app}/pages/__init__.py` file and it will automatically be added to the app.
-
-
-### Adding Components
-
-In order to keep your code organized, we recommend putting components that are
-used across multiple pages in the `{your_app}/components/` directory.
-
-In this template, we have a sidebar component in `{your_app}/components/sidebar.py`.
-
-### Adding State
-
-In this template, we define the base state of the app in `{your_app}/state.py`.
-The base state is useful for general app state that is used across multiple pages.
-
-In this template, the base state handles the toggle for the sidebar.
-
-As your app grows, we recommend using [substates](https://reflex.dev/docs/state/substates/)
-to organize your state. You can either define substates in their own files, or if the state is
-specific to a page, you can define it in the page file itself.
+## <a name="acknowledgements"></a>Acknowledgements
+Thank you to all of the staff, volunteers, mentors, and sponsors at CalHacks 10.0! We had a blast working on this application over the past day! 
