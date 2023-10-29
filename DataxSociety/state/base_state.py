@@ -32,7 +32,7 @@ class State(rx.State):
         """
         with rx.session() as session:
             result = session.exec(
-                select(User, AuthSession).where(
+                session.query(User, AuthSession).where(
                     AuthSession.session_id == self.auth_token,
                     AuthSession.expiration
                     >= datetime.datetime.now(datetime.timezone.utc),
@@ -57,7 +57,7 @@ class State(rx.State):
         """Destroy AuthSessions associated with the auth_token."""
         with rx.session() as session:
             for auth_session in session.exec(
-                AuthSession.select.where(AuthSession.session_id == self.auth_token)
+                select(AuthSession).where(AuthSession.session_id == self.auth_token)
             ).all():
                 session.delete(auth_session)
             session.commit()
