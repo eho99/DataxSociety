@@ -6,12 +6,12 @@ from typing import List
 
 # ASSUME FOR A CLASSICATION PROBLEM 
 
-class VariableLayerFeedForwardNN(nn.Module):
+class DENSE(nn.Module):
     def __init__(self, input_size: int, output_size: int, hidden_sizes: List[int], activations: List[str], possible_labels: List[str]):
         assert len(hidden_sizes) == len(activations)
         assert len(possible_labels) == output_size
 
-        super(VariableLayerFeedForwardNN, self).__init__()
+        super(DENSE, self).__init__()
         
         self.hidden_layers = nn.ModuleList()
         self.hidden_layers.append(nn.Linear(input_size, hidden_sizes[0]))
@@ -129,5 +129,5 @@ class VariableLayerFeedForwardNN(nn.Module):
         return test_loss, epoch_status, test_acuracy
     
 
-# network = VariableLayerFeedForwardNN(5, 10, [10, 10], ["ReLU", "ReLU"], [0,1,2,3,4,5,6,7,8,9])
+# network = DENSE(5, 10, [10, 10], ["ReLU", "ReLU"], [0,1,2,3,4,5,6,7,8,9])
 # print(network.train("CrossEntropyLoss", 1e-4, 1e2, 0.5, [[1,2,3,4,5], [1,3,5,7,9]], [3, 5]))
