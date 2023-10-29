@@ -4,6 +4,12 @@ import torch.optim as optim
 from sklearn.model_selection import train_test_split
 from typing import List
 
+def flattener(tensor):
+    flattened_matrices = []
+    for matrix in tensor:
+        flattened_matrices.append(matrix.flatten())
+    return flattened_matrices
+
 # ASSUME FOR A CLASSICATION PROBLEM 
 
 class DENSE(nn.Module):
@@ -117,7 +123,13 @@ class DENSE(nn.Module):
             all_outputs.append(encoder[label].t())
 
         all_outputs = torch.stack(all_outputs, dim=0)
-        all_inputs = torch.tensor(all_inputs)
+
+        # if higher dimensional data flatten all of it 
+        if all_inputs.dim() == 3:
+            all_inputs = flattener(all_inputs)
+            all_inputs = torch.stack(all_inputs, dim=0)
+        else:
+            all_inputs = torch.tensor(all_inputs)
 
         train_inputs, test_inputs, train_outputs, test_outputs, _, test_labels = train_test_split(all_inputs, all_outputs, all_output_labels, test_size=test_ratio)
 
