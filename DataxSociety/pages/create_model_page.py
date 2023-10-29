@@ -12,13 +12,15 @@ class SelectState(State):
 def get_projects():
     with rx.session() as session:
         projects = session.exec(
-            session.query(Project).with_entities(Project.project_name)
-        ).one_or_none()
+            session.query(Project.project_name)
+        ).all()
     return projects
 
 proj_list = get_projects()
 if not proj_list:
     proj_list = []
+else:
+    proj_list = [proj[0] for proj in proj_list]
 
 def create_model_page() -> rx.Component:
     form = rx.form(
