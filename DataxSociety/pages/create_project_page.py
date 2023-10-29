@@ -40,7 +40,7 @@ def create_project_page() -> rx.Component:
             is_required=True
         ),
         rx.form_control(
-            rx.form_label("Number of data points", html_for="num_data", class_name="block text-sm font-medium leading-6 text-gray-900"),
+            rx.form_label("Number of Data Points", html_for="num_data", class_name="block text-sm font-medium leading-6 text-gray-900"),
             rx.box(
                 rx.input(id="num_data", type="number", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
                 class_name="mt-2"
@@ -56,7 +56,7 @@ def create_project_page() -> rx.Component:
         rx.box(
             navbar(),
             rx.box(
-                rx.heading("Create a new project"),
+                rx.heading("Create a New Project!"),
                 form,  
                 class_name="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8"
             ),  
