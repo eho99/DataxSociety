@@ -5,4 +5,3 @@ __pycache__/
 alembic.ini
 alembic/
 venv
-.web

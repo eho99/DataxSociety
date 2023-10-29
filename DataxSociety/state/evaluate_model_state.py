@@ -8,8 +8,8 @@ import reflex as rx
 
 from ..models.project import *
 from ..models.profile_project_link import *
-from ..models.project_models import *
-from ..models.project_data import *
+from ..models.mnistnetwork import *
+from ..models.mnistdata import *
 
 from .login_state import LOGIN_ROUTE, REGISTER_ROUTE
 from .base_state import State
@@ -26,10 +26,10 @@ class Eval_State(State):
         
         with rx.session as session:
             query_result = (
-                session.query(Project, ProjectModel)
-                .join(ProjectModel)
+                session.query(Project, MNISTNetwork)
+                .join(MNISTNetwork)
                 .filter(Project.id == project_id)
-                .filter(ProjectModel.id == model_id)
+                .filter(MNISTNetwork.id == model_id)
                 .first()
             )
 
@@ -39,7 +39,7 @@ class Eval_State(State):
             output_nodes = proj.num_dep_vars
 
             data_table_id = proj.project_data
-            data_set, label_set = (session.query(ProjectData).filter(ProjectData.data_table_id == data_table_id).first())
+            data_set, label_set = session.query(MNISTData).filter(MNISTData.data_table_id == data_table_id).first()
 
 
             # hyperparams
@@ -49,6 +49,7 @@ class Eval_State(State):
             num_epochs = proj_model.num_epochs
             test_ratio = proj_model.test_ratio
             loss = proj_model.loss_func
+            dropout = proj_model.dropout
 
             # I expect this to be LSTM or DENSE
             if proj_model.network_type == "DENSE":
@@ -56,7 +57,8 @@ class Eval_State(State):
                 test_loss, epoch_status, test_acuracy = network.train(loss, learning_rate, num_epochs, test_ratio, data_set, label_set)
                 return test_acuracy
             elif proj_model.network_type == "LSTM":
-                pass
+                network = DENSE(input_nodes, output_nodes, layer_nodes, layer_nodes+2, dropout)
+                # test_loss, epoch_status, test_acuracy = network.train(loss, learning_rate, num_epochs, test_ratio, data_set, label_set)
 
 
 
