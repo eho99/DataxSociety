@@ -32,16 +32,19 @@ class DataState(State):
         self.error_message = ""
         data_table = form_data["data"]
         labels = form_data["label"]
-        with rx.session() as session:
-            self.data = session.exec(session.query(project_data).where(project_data.data == data_table_name)).one_or_none()
-            if not self.data:
-                self.error_message = (f"Username {data_table} does not exist. Please make a project with using this table to re-access it.")
 
-        if labels and not self.data:
-            self.error_message = "This data has only labels and no data. "
-            return 
-        if self.data and not labels: 
-            self.error_message = "This data table has no classification labels."
+        # with rx.session() as session: 
+
+        # with rx.session() as session:
+        #     self.data = session.exec(session.query(project_data).where(project_data.data == data_table_name)).one_or_none()
+        #     if not self.data:
+        #         self.error_message = (f"Username {data_table} does not exist. Please make a project with using this table to re-access it.")
+
+        # if labels and not self.data:
+        #     self.error_message = "This data has only labels and no data. "
+        #     return 
+        # if self.data and not labels: 
+        #     self.error_message = "This data table has no classification labels."
         
         return DataState.redir()  # type: ignore
 
