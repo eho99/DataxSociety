@@ -7,7 +7,7 @@ from .pages.registration_page import registration_page as registration_page
 from .pages.login_page import login_page
 from .pages.create_project_page import create_project_page
 from .pages.create_model_page import create_model_page
-from .pages.add_data import add_data_page
+from .pages.add_data_page import add_data_page
 
 from .pages.index import index
 

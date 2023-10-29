@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
 from typing import List
+import pandas as pd
 
 def flattener(tensor):
     flattened_matrices = []
@@ -10,12 +11,36 @@ def flattener(tensor):
         flattened_matrices.append(matrix.flatten())
     return flattened_matrices
 
+def convert_list(bad_list):
+    listOfFloat = []
+    for num in bad_list[1:-1].split(', '):
+        listOfFloat.append(float(num.strip("'")))
+    return listOfFloat
+
+new_df = pd.read_csv('mnist_processed.csv')
+
+def get_data(new_df):
+    listOfLists = []
+    for i in range(500):
+        listOfLists.append(convert_list(new_df['pixel_vals'][i]))
+    return listOfLists
 # ASSUME FOR A CLASSICATION PROBLEM 
 
 class DENSE(nn.Module):
     def __init__(self, input_size: int, output_size: int, hidden_sizes: List[int], activations: List[str], possible_labels: List[str]):
-        assert len(hidden_sizes) == len(activations)
-        assert len(possible_labels) == output_size
+        
+        if type(activations) == str:
+            listOfFloat = []
+            for num in activations[1:-1].split(', '):
+                listOfFloat.append(num.strip('"'))
+            activations =listOfFloat
+
+        if type(hidden_sizes) == str:
+            listOfFloat = []
+            for num in hidden_sizes[1:-1].split(', '):
+                listOfFloat.append(int(num.strip("'")))
+            hidden_sizes =listOfFloat
+
 
         super(DENSE, self).__init__()
         
@@ -116,6 +141,10 @@ class DENSE(nn.Module):
     def train(self, loss_function: str, lr: float, num_epochs: int, test_ratio: float, 
               all_inputs: List[List[float]], all_output_labels: List[int]):
 
+        all_output_labels = all_output_labels[:500]
+        all_output_labels = [label[0] for label in all_output_labels]
+
+
         encoder = torch.eye(len(self.possible_labels))
         all_outputs = []
 
@@ -124,12 +153,15 @@ class DENSE(nn.Module):
 
         all_outputs = torch.stack(all_outputs, dim=0)
 
-        # if higher dimensional data flatten all of it 
-        if all_inputs.dim() == 3:
-            all_inputs = flattener(all_inputs)
-            all_inputs = torch.stack(all_inputs, dim=0)
-        else:
-            all_inputs = torch.tensor(all_inputs)
+
+        # HARD CODE all_inputs
+
+        # all_inputs.remove((None,))
+        # print(all_inputs)
+
+        # # if higher dimensional data flatten all of it 
+        # all_inputs = torch.tensor(all_inputs)
+        all_inputs = torch.tensor(get_data(new_df))
 
         train_inputs, test_inputs, train_outputs, test_outputs, _, test_labels = train_test_split(all_inputs, all_outputs, all_output_labels, test_size=test_ratio)
 
@@ -137,7 +169,9 @@ class DENSE(nn.Module):
         test_loss = self._test_loss(test_inputs, test_outputs)
         test_acuracy = self.accuracy(test_inputs, test_labels)
 
-        return test_loss, epoch_status, test_acuracy
+        print(epoch_status)
+
+        return test_loss, epoch_status, float(test_acuracy)
     
 
 # network = DENSE(5, 10, [10, 10], ["ReLU", "ReLU"], [0,1,2,3,4,5,6,7,8,9])
