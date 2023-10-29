@@ -10,14 +10,8 @@ class CreateProjectState(State):
     redirect_to: str = ""
 
     def on_submit(self, form_data) -> rx.event.EventSpec:
-        """Handle login form on_submit.
-
-        Args:
-            form_data: A dict of form fields and values.
-        """
-        self.error_message = ""
-        username = form_data["username"]
-        password = form_data["password"]
+        
+        # TODO
         
         return CreateProjectState.redir()  
 

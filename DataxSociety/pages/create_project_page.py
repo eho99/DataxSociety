@@ -55,8 +55,11 @@ def create_project_page() -> rx.Component:
         CreateProjectState.is_hydrated,
         rx.box(
             navbar(),
-            rx.heading("Create a new project"),
-            form,
+            rx.box(
+                rx.heading("Create a new project"),
+                form,  
+                class_name="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8"
+            ),  
         )
     )
     
