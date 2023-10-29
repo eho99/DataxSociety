@@ -116,7 +116,6 @@ class DENSE(nn.Module):
         for label in all_output_labels:
             all_outputs.append(encoder[label].t())
 
-
         all_outputs = torch.stack(all_outputs, dim=0)
         all_inputs = torch.tensor(all_inputs)
 
