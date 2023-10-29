@@ -72,6 +72,7 @@ def create_project_page() -> rx.Component:
                 ),
                 class_name="mt-2",
             ),
+            is_required=True
         ),
         rx.button("Create Project", type_="submit", class_name="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"),
         on_submit=CreateProjectState.on_submit,
