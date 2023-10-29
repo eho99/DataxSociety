@@ -87,7 +87,7 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.login_state.on_submit", {form_data:{"password": getRefValue(ref_password), "username": getRefValue(ref_username)}})], (_e0))}>
+  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.login_state.on_submit", {form_data:{"username": getRefValue(ref_username), "password": getRefValue(ref_password)}})], (_e0))}>
   <FormControl isRequired={true}>
   <FormLabel className={`block text-sm font-medium leading-6 text-gray-900`} htmlFor={`username`}>
   {`Username`}

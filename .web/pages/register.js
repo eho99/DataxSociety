@@ -96,7 +96,7 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.registration_state.handle_registration", {form_data:{"confirm_password": getRefValue(ref_confirm_password), "password": getRefValue(ref_password), "username": getRefValue(ref_username)}})], (_e0))}>
+  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.registration_state.handle_registration", {form_data:{"username": getRefValue(ref_username), "password": getRefValue(ref_password), "confirm_password": getRefValue(ref_confirm_password)}})], (_e0))}>
   <Box sx={{"isRequired": true}}>
   <FormLabel className={`block text-sm font-medium leading-6 text-gray-900`} htmlFor={`username`}>
   {`Username`}
