@@ -11,7 +11,12 @@ class CreateProjectState(State):
 
     def on_submit(self, form_data) -> rx.event.EventSpec:
         
-        # TODO
+        project_name = form_data["project_name"]
+        description = form_data["description"]
+        num_indep_vars = form_data["num_indep_vars"]
+        num_dep_vars = form_data["num_dep_vars"]
+        num_data = form_data["num_data"]
+        
         
         return CreateProjectState.redir()  
 

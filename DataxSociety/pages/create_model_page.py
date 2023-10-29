@@ -1,6 +1,6 @@
 import reflex as rx
 
-from ..state.fetch_data_state import Data_Page_State
+from ..state.fetch_data_state import DataState
 from ..state.login_state import require_login
 from ..state.base_state import State
 from ..components.navbar import navbar
@@ -169,7 +169,7 @@ def create_model_page() -> rx.Component:
     )
 
     return rx.cond(
-        Data_Page_State.is_hydrated,
+        DataState.is_hydrated,
         rx.box(
             navbar(),
             rx.box(

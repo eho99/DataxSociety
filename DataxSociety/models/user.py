@@ -4,8 +4,6 @@ from passlib.context import CryptContext
 
 import reflex as rx
 
-from .userprofile import UserProfile
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class User(rx.Model, table=True):

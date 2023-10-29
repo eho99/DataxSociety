@@ -80,7 +80,7 @@ num_layers = 2
 dropout = 0.2
 num_samples = 100
 seq_length = 18
-batch_size = 18  # Match the batch size
+batch_size = 18  
 
 # Generate random data and labels with the correct batch size
 data = torch.rand((num_samples, seq_length, input_size))
