@@ -1,5 +1,9 @@
 import reflex as rx 
 
+from ..state.login_state import require_login
+from ..components.navbar import navbar
+
+@require_login
 def index() -> rx.Component:
     """Render the index page.
 
@@ -7,8 +11,8 @@ def index() -> rx.Component:
         A reflex component.
     """
     return rx.fragment(
-        rx.vstack(
+        navbar(),
+        rx.box(
             rx.heading("Welcome to my homepage!"),
-            rx.link("Protected Page", href="/protected"),
         ),
     )
