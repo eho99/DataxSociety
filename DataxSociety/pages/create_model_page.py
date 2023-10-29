@@ -25,8 +25,6 @@ def create_model_page() -> rx.Component:
         rx.form_control(
             rx.form_label("Project Name", html_for="project_name", class_name="block text-sm font-medium leading-6 text-gray-900"),
             rx.box(
-                # rx.input(id="project_name", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
-                # class_name="mt-2"
                 rx.select(
                     proj_list,
                     placeholder="Select a Project",
