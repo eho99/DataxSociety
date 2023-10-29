@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 
 import reflex as rx
 
-from .user_profile import UserProfile
+from .userprofile import UserProfile
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -15,7 +15,7 @@ class User(rx.Model, table=True):
     password_hash: str = Field(nullable=False)
     enabled: bool = False
 
-    user_profile_id: Optional[int] = Field(default=None, foreign_key="user_profile.id")
+    userprofile_id: Optional[int] = Field(default=None, foreign_key="userprofile.id")
 
     @staticmethod
     def hash_password(secret: str) -> str:

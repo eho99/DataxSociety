@@ -20,7 +20,7 @@ def registration_page() -> rx.Component:
         rx.box(
             rx.form_label("Password", html_for="password", class_name="block text-sm font-medium leading-6 text-gray-900"),
             rx.box(
-                rx.input(id="password", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
+                rx.password(id="password", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
                 class_name="mt-2"
             ),
             is_required=True
@@ -28,7 +28,7 @@ def registration_page() -> rx.Component:
         rx.box(
             rx.form_label("Confirm password", html_for="confirm_password", class_name="block text-sm font-medium leading-6 text-gray-900"),
             rx.box(
-                rx.input(id="confirm_password", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
+                rx.password(id="confirm_password", class_name="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"),
                 class_name="mt-2"
             ),
             is_required=True
