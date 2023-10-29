@@ -26,7 +26,6 @@ class CreateProjectState(State):
             result = session.exec(
                 session.query(User).where(User.username == creator)
             ).first()
-            print(result)
             creator_id = result[0].id
         contributors = []
 
