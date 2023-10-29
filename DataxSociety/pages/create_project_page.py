@@ -15,9 +15,10 @@ def get_users():
     return users
 
 users = get_users()
-users = list(users)
 if not users:
     users = []
+else:
+    users = list(users)
 
 def create_project_page() -> rx.Component:
 
