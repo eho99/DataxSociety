@@ -34,9 +34,9 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_password = useRef(null); refs['ref_password'] = ref_password;
   const ref_username = useRef(null); refs['ref_username'] = ref_username;
   const ref_confirm_password = useRef(null); refs['ref_confirm_password'] = ref_confirm_password;
+  const ref_password = useRef(null); refs['ref_password'] = ref_password;
 
   return (
     <Fragment>
@@ -96,7 +96,7 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.registration_state.handle_registration", {form_data:{"password": getRefValue(ref_password), "username": getRefValue(ref_username), "confirm_password": getRefValue(ref_confirm_password)}})], (_e0))}>
+  <Box as={`form`} className={`space-y-6`} onSubmit={(_e0) => addEvents([Event("state.registration_state.handle_registration", {form_data:{"confirm_password": getRefValue(ref_confirm_password), "password": getRefValue(ref_password), "username": getRefValue(ref_username)}})], (_e0))}>
   <Box sx={{"isRequired": true}}>
   <FormLabel className={`block text-sm font-medium leading-6 text-gray-900`} htmlFor={`username`}>
   {`Username`}

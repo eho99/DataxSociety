@@ -35,8 +35,8 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_password = useRef(null); refs['ref_password'] = ref_password;
   const ref_username = useRef(null); refs['ref_username'] = ref_username;
+  const ref_password = useRef(null); refs['ref_password'] = ref_password;
 
   return (
     <Fragment>
